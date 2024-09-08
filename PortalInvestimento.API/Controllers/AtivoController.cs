@@ -68,7 +68,7 @@ namespace PortalInvestimento.API.Controllers
         [HttpDelete("excluir_ativo/{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var ativoDTO = _ativoService.ObterPorIdAsync(id);
+            var ativoDTO = _ativoService.ObterPorIdAsync(id).Result;
                
             if (ativoDTO == null)
                 return NotFound("Ativo não encontrado.");

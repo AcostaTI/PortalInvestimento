@@ -4,6 +4,8 @@ namespace PortalInvestimento.Domain.Entities
 {
     public class Transacao : Entidade
     {
+
+        public Transacao() { }
         public Transacao(int quantidade, decimal preco, DateTime dataTransacao, int portfolioId , int ativoId)
         {
             Quantidade = quantidade;
@@ -17,6 +19,7 @@ namespace PortalInvestimento.Domain.Entities
 
         public int Quantidade { get; private set; }
         public decimal Preco { get; private set; }
+        public decimal Total { get; private set; }
         public DateTime DataTransacao { get; private set; }
         public int PortfolioId { get;  set; }
         public Portfolio Portfolio { get;  set; }

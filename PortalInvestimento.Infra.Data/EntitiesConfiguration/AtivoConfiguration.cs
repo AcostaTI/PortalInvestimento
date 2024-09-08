@@ -14,10 +14,7 @@ namespace PortalInvestimento.Infra.Data.EntitiesConfiguration
             builder.Property(t => t.Codigo).HasMaxLength(50).IsRequired();
             builder.Property(t => t.Descricao).HasMaxLength(500).IsRequired();
             builder.Property(t => t.TaxaADM).HasPrecision(16,4).IsRequired();
-            builder.Property(t => t.AporteMinimo).HasPrecision(16,4).IsRequired();
             builder.Property(t => t.Tipo).HasConversion<int>();
-
-
 
         }
     }

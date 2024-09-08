@@ -19,9 +19,5 @@ namespace PortalInvestimento.Application.DTOs
         public string Descricao { get; set; }
         public string Codigo { get; set; }
         public decimal TaxaADM { get; set; }
-        public decimal AporteMinimo { get; set; }
-        public decimal RentabilidadeUltimo_3meses { get; set; }
-        public decimal Rentabilidade_Ultimo_12meses { get; set; }
-        public decimal Rentabilidade_Ultimo_24meses { get; set; }
     }
 }
