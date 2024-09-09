@@ -10,6 +10,7 @@ namespace PortalInvestimento.Domain.Entities
         {
             Quantidade = quantidade;
             Preco = preco;
+            Total = quantidade * preco;
             DataTransacao = dataTransacao;
             PortfolioId = portfolioId;
             AtivoId = ativoId;

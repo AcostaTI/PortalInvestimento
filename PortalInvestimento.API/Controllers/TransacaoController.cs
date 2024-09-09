@@ -15,28 +15,42 @@ namespace PortalInvestimento.API.Controllers
             _transacaoService = transacaoService;
         }
 
-        [HttpGet("obter_info_transacao/{id:int}")]
+        [HttpGet("{id:int}")]
+        [ActionName("obter_info_transacao")]
         public async Task<ActionResult<TransacaoDTO>> Get(int id)
         {
-            var ativo = await _transacaoService.ObterPorIdAsync(id);
-            if (ativo == null)
+            var transacao = await _transacaoService.ObterPorIdAsync(id);
+            if (transacao == null)
             {
                 return NotFound("Transação não encontrado.");
             }
 
-            return Ok(ativo);
+            return Ok(transacao);
         }
 
         [HttpGet("listar_transacao")]
         public async Task<ActionResult<IList<TransacaoDTO>>> Get()
         {
-            var ativos = await _transacaoService.ObterTodosAsync();
-            if (ativos == null)
+            var transacoes = await _transacaoService.ObterTodosAsync();
+            if (transacoes == null)
             {
-                return NotFound("Transação não encontrados.");
+                return NotFound("Transações não encontradas.");
             }
 
-            return Ok(ativos);
+            return Ok(transacoes);
+        }
+
+        [HttpGet("ListarTransacaoPorPortifolioId/{PortfolioId:int}")]
+        [ActionName("")]
+        public async Task<ActionResult<IList<TransacaoDTO>>> GetTransacoesPorId(int PortfolioId)
+        {
+            var transacoes = await _transacaoService.ObterTransacaoPorPortfolioId(PortfolioId);
+            if (transacoes == null)
+            {
+                return NotFound("Transações não encontradas.");
+            }
+
+            return Ok(transacoes);
         }
 
         [HttpPost]
@@ -48,7 +62,7 @@ namespace PortalInvestimento.API.Controllers
             await _transacaoService.CadastrarAsync(transacaoDTO);
 
 
-            return new CreatedAtRouteResult("obter_info_ativo", new { id = transacaoDTO.Id }, transacaoDTO);
+            return new CreatedAtRouteResult("obter_info_transacao", new { id = transacaoDTO.Id }, transacaoDTO);
         }
 
         [HttpPut("modificar_transacao")]

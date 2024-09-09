@@ -57,5 +57,10 @@ namespace PortalInvestimento.Infra.Data.Repositories
         {
             return await _context.Transacoes.ToListAsync();
         }
+
+        public async Task<IList<Transacao>> ObterTransacaoPorPortfolioId(int portfolioId)
+        {
+            return await _context.Transacoes.Where(t => t.PortfolioId == portfolioId).ToListAsync();
+        }
     }
 }

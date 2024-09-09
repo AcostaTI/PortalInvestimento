@@ -43,8 +43,14 @@ namespace PortalInvestimento.Application.Services
 
         public async Task<IList<TransacaoDTO>> ObterTodosAsync()
         {
-            var transacao = await _transacaoRepository.ObterTodosAsync();
-            return _mapper.Map<IList<TransacaoDTO>>(transacao);
+            var transacoes = await _transacaoRepository.ObterTodosAsync();
+            return _mapper.Map<IList<TransacaoDTO>>(transacoes);
+        }
+
+        public async Task<IList<TransacaoDTO>> ObterTransacaoPorPortfolioId(int portfolioId)
+        {
+            var transacoes = await _transacaoRepository.ObterTransacaoPorPortfolioId(portfolioId);
+            return _mapper.Map<IList<TransacaoDTO>>(transacoes);
         }
     }
 }
