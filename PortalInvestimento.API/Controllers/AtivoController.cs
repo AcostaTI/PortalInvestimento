@@ -15,7 +15,7 @@ namespace PortalInvestimento.API.Controllers
             _ativoService = ativoService;
         }
 
-        [HttpGet("obter_info_ativo/{id:int}")]
+        [HttpGet("{id:int}", Name = "obter_info_ativo")]
         public async Task<ActionResult<AtivoDTO>> Get(int id)
         {
             var ativo = await _ativoService.ObterPorIdAsync(id);
@@ -48,7 +48,7 @@ namespace PortalInvestimento.API.Controllers
             await _ativoService.CadastrarAsync(ativoDTO);
 
 
-            return new CreatedAtRouteResult("obter_info_ativo", new { id = ativoDTO.Id }, ativoDTO);
+            return Ok("Ok");
         }
 
         [HttpPut("modificar_ativo")]
@@ -62,20 +62,20 @@ namespace PortalInvestimento.API.Controllers
 
             await _ativoService.AlterarAsync(ativoDTO);
 
-            return Ok(ativoDTO);
+            return Ok("Ok");
         }
 
         [HttpDelete("excluir_ativo/{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var ativoDTO = _ativoService.ObterPorIdAsync(id).Result;
+            var ativoDTO = await _ativoService.ObterPorIdAsync(id);
                
             if (ativoDTO == null)
                 return NotFound("Ativo não encontrado.");
 
             await _ativoService.DeletarAsync(id);
 
-            return Ok(ativoDTO);
+            return Ok("OK");
         }
 
 

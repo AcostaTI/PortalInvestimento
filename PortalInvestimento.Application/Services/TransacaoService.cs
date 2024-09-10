@@ -26,7 +26,23 @@ namespace PortalInvestimento.Application.Services
         public async Task CadastrarAsync(TransacaoDTO entidade)
         {
             var transacao = _mapper.Map<Transacao>(entidade);
+
+            if (transacao.Operacao == "R")
+            {
+                ValidaResgate(transacao.Total, transacao.PortfolioId);
+            }
+
             await _transacaoRepository.CadastrarAsync(transacao);
+   
+        }
+
+        private void ValidaResgate(decimal totalResgate, int portfolioId)
+        {
+            var saldo = _transacaoRepository.ObterSaldoPorPortfolio(portfolioId);
+
+            if (saldo < totalResgate)
+                throw new Exception("Saldo menor que o valor do resgate!");
+            
         }
 
         public async Task DeletarAsync(int? id)
@@ -52,5 +68,7 @@ namespace PortalInvestimento.Application.Services
             var transacoes = await _transacaoRepository.ObterTransacaoPorPortfolioId(portfolioId);
             return _mapper.Map<IList<TransacaoDTO>>(transacoes);
         }
+
+
     }
 }

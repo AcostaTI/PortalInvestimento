@@ -9,7 +9,7 @@ namespace PortalInvestimento.Application.Mappings
         public DTOMappingProfile() 
         {
             CreateMap<AtivoDTO, Ativo>().ReverseMap();
-            CreateMap<TransacaoDTO, Transacao>().ReverseMap();
+            CreateMap<TransacaoDTO, Transacao>().ForMember(t => t.Total, opt => opt.MapFrom(src => src.Quantidade * src.Preco)).ReverseMap();
             CreateMap<UsuarioDTO, Usuario>().ReverseMap();
             CreateMap<PortfolioDTO, Portfolio>().ReverseMap();
         }

@@ -15,8 +15,7 @@ namespace PortalInvestimento.API.Controllers
             _transacaoService = transacaoService;
         }
 
-        [HttpGet("{id:int}")]
-        [ActionName("obter_info_transacao")]
+        [HttpGet("{id:int}", Name = "obter_info_transacao")]
         public async Task<ActionResult<TransacaoDTO>> Get(int id)
         {
             var transacao = await _transacaoService.ObterPorIdAsync(id);
@@ -41,7 +40,6 @@ namespace PortalInvestimento.API.Controllers
         }
 
         [HttpGet("ListarTransacaoPorPortifolioId/{PortfolioId:int}")]
-        [ActionName("")]
         public async Task<ActionResult<IList<TransacaoDTO>>> GetTransacoesPorId(int PortfolioId)
         {
             var transacoes = await _transacaoService.ObterTransacaoPorPortfolioId(PortfolioId);
@@ -58,11 +56,18 @@ namespace PortalInvestimento.API.Controllers
         {
             if (transacaoDTO == null)
                 return BadRequest("Transação inválido");
+            try
+            {
+                await _transacaoService.CadastrarAsync(transacaoDTO);
+
+                return Ok("OK");
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
             
-            await _transacaoService.CadastrarAsync(transacaoDTO);
-
-
-            return new CreatedAtRouteResult("obter_info_transacao", new { id = transacaoDTO.Id }, transacaoDTO);
         }
 
         [HttpPut("modificar_transacao")]
@@ -76,20 +81,20 @@ namespace PortalInvestimento.API.Controllers
 
             await _transacaoService.AlterarAsync(transacaoDTO);
 
-            return Ok(transacaoDTO);
+            return Ok("Ok");
         }
 
         [HttpDelete("excluir_trasacao/{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var ativoDTO = _transacaoService.ObterPorIdAsync(id);
+            var transacaoDTO = await _transacaoService.ObterPorIdAsync(id);
                
-            if (ativoDTO == null)
+            if (transacaoDTO == null)
                 return NotFound("Transação não encontrado.");
 
             await _transacaoService.DeletarAsync(id);
 
-            return Ok(ativoDTO);
+            return Ok("Ok");
         }
 
     }

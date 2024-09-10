@@ -17,8 +17,10 @@ namespace PortalInvestimento.Infra.Data.EntitiesConfiguration
 
             builder.Property(x => x.Quantidade).IsRequired();
             builder.Property(x => x.Preco).HasPrecision(16,4).IsRequired();
+            builder.Property(x => x.Total).HasPrecision(16, 4).IsRequired();
             builder.Property(x => x.DataTransacao).IsRequired();
             builder.Property(x => x.Quantidade).IsRequired();
+            builder.Property(x => x.Operacao).HasMaxLength(1).IsRequired();
 
             builder.HasOne(p => p.Portfolio)
                 .WithMany(u => u.Transacoes)

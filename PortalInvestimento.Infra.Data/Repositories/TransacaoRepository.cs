@@ -2,11 +2,6 @@
 using PortalInvestimento.Domain.Entities;
 using PortalInvestimento.Domain.Interfaces;
 using PortalInvestimento.Infra.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PortalInvestimento.Infra.Data.Repositories
 {
@@ -47,10 +42,8 @@ namespace PortalInvestimento.Infra.Data.Repositories
 
         public async Task<Transacao> ObterPorIdAsync(int? id)
         {
-            if (id > 0)
-                return await _context.Transacoes.FindAsync(id);
-
-            return null;
+            var result = await _context.Transacoes.FindAsync(id);
+            return result;            
         }
 
         public async Task<IList<Transacao>> ObterTodosAsync()
@@ -62,5 +55,15 @@ namespace PortalInvestimento.Infra.Data.Repositories
         {
             return await _context.Transacoes.Where(t => t.PortfolioId == portfolioId).ToListAsync();
         }
+
+        public decimal ObterSaldoPorPortfolio(int portfolioId)
+        {
+            decimal aporte =  _context.Transacoes.Where(t => t.PortfolioId == portfolioId && t.Operacao == "A").Sum(s => s.Total);
+            decimal resgate =  _context.Transacoes.Where(t => t.PortfolioId == portfolioId && t.Operacao == "R").Sum(s => s.Total);
+
+            var result = aporte - resgate;
+            return result;
+        }
+
     }
 }

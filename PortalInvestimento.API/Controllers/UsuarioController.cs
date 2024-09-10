@@ -35,7 +35,7 @@ namespace PortalInvestimento.API.Controllers
 
             await _usuarioService.CadastrarAsync(usuarioDTO);
 
-            return new CreatedAtRouteResult("GetUsuario", new { id = usuarioDTO.Id }, usuarioDTO);
+            return Ok("OK");
         }
 
         [HttpPost("autenticar")]
@@ -46,10 +46,7 @@ namespace PortalInvestimento.API.Controllers
             if (usuario == null)
                 return NotFound(new { mensagem = "Usuario e ou Senha invalidos" });
 
-            return Ok(new
-            {
-                Usuario = usuario
-            });
+            return Ok(new { mensagem = "Login success" });
         }
 
         [HttpGet("GetAllUsers")]
@@ -58,37 +55,37 @@ namespace PortalInvestimento.API.Controllers
             var ativos = await _usuarioService.ObterTodosAsync();
             if (ativos == null)
             {
-                return NotFound("Usuários não encontrados.");
+                return NotFound("Usuários e ou senha não encontrados.");
             }
 
             return Ok(ativos);
         }
 
         [HttpPut("modificar_usuario")]
-        public async Task<ActionResult> Put(int id, [FromBody] UsuarioDTO ativoDTO)
+        public async Task<ActionResult> Put(int id, [FromBody] UsuarioDTO usuarioDTO)
         {
-            if (id != ativoDTO.Id)
+            if (id != usuarioDTO.Id)
                 return BadRequest();
 
-            if (ativoDTO == null)
+            if (usuarioDTO == null)
                 return BadRequest();
 
-            await _usuarioService.AlterarAsync(ativoDTO);
+            await _usuarioService.AlterarAsync(usuarioDTO);
 
-            return Ok(ativoDTO);
+            return Ok("OK");
         }
 
         [HttpDelete("{id:int}", Name = "excluir_usuario")]
         public async Task<ActionResult> Delete(int id)
         {
-            var ativoDTO = _usuarioService.ObterPorIdAsync(id);
+            var ativoDTO = await _usuarioService.ObterPorIdAsync(id);
 
             if (ativoDTO == null)
                 return NotFound("Usuário não encontrado.");
 
             await _usuarioService.DeletarAsync(id);
 
-            return Ok(ativoDTO);
+            return Ok("OK");
         }
     }
 }

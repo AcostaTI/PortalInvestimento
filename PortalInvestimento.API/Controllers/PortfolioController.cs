@@ -49,10 +49,10 @@ namespace PortalInvestimento.API.Controllers
             await _portfolioService.CadastrarAsync(portfolioDTO);
 
 
-            return new CreatedAtRouteResult("obter_info_portfolio", new { id = portfolioDTO.Id }, portfolioDTO);
+            return Ok("OK");
         }
 
-        [HttpPut("modificar_portfolio")]
+        [HttpPut("modificar_portfolio/{id:int}")]
         public async Task<ActionResult> Put(int id, [FromBody] PortfolioDTO portfolioDTO)
         {
             if (id != portfolioDTO.Id)
@@ -63,20 +63,20 @@ namespace PortalInvestimento.API.Controllers
 
             await _portfolioService.AlterarAsync(portfolioDTO);
 
-            return Ok(portfolioDTO);
+            return Ok("OK");
         }
 
         [HttpDelete("excluir_portfolio/{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var portfolioDTO = _portfolioService.ObterPorIdAsync(id);
+            var portfolioDTO = await _portfolioService.ObterPorIdAsync(id);
 
             if (portfolioDTO == null)
                 return NotFound("Portfolio não encontrado.");
 
             await _portfolioService.DeletarAsync(id);
 
-            return Ok(portfolioDTO);
+            return Ok("OK");
         }
     }
 }

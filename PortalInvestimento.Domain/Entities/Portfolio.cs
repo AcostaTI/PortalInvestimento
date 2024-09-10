@@ -35,16 +35,6 @@ namespace PortalInvestimento.Domain.Entities
         public Usuario Usuario { get;  set; }
         public ICollection<Transacao> Transacoes { get; set; }
 
-        public void Update(string nome, string descricao, string codigo)
-        {
-            Nome = nome;
-            Descricao = descricao;
-            Codigo = codigo;
-
-            //ValidateEntity();
-
-        }
-
         public override void ValidateEntity()
         {
             AssertionConcern.AssertArgumentNotEmpty(Codigo, "Codigo precisa ser preenchido.");
