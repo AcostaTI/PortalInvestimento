@@ -53,7 +53,7 @@ namespace PortalInvestimento.Domain.Tests
         [Fact]
         public void CreateTransacao_NomeMaisDeCiquentaCaracteres_RetornoExcception()
         {
-            Action action = () => new Ativo(Ativo.enTipoInvestimento.Acoes, "aqui tem mais de cem caracteres vai da errado. alteração para build do pipeline e verificar a compilação dos testes unitarios da aplicação.................", "Descrição Ativo", "Test", 1);
+            Action action = () => new Ativo(Ativo.enTipoInvestimento.Acoes, "aqui tem mais de cem caracteres vai da errado. alteração para build do pipeline e verificar a compilação dos testes unitarios da aplicação............", "Descrição Ativo", "Test", 1);
 
             action.Should().Throw<DomainException>().WithMessage("Nome do Investimento precisa ter no maximo 100 caracteres.");
 
