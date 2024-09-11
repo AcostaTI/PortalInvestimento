@@ -27,23 +27,23 @@ namespace PortalInvestimento.Application.Services
         {
             var transacao = _mapper.Map<Transacao>(entidade);
 
-            if (transacao.Operacao == "R")
-            {
-                ValidaResgate(transacao.Total, transacao.PortfolioId);
-            }
+            //if (transacao.Operacao == "R")
+            //{
+            //    ValidaResgate(transacao.Total, transacao.PortfolioId);
+            //}
 
             await _transacaoRepository.CadastrarAsync(transacao);
    
         }
 
-        private void ValidaResgate(decimal totalResgate, int portfolioId)
-        {
-            var saldo = _transacaoRepository.ObterSaldoPorPortfolio(portfolioId);
+        //private void ValidaResgate(decimal totalResgate, int portfolioId)
+        //{
+        //    var saldo = _transacaoRepository.ObterSaldoPorPortfolio(portfolioId);
 
-            if (saldo < totalResgate)
-                throw new Exception("Saldo menor que o valor do resgate!");
+        //    if (saldo < totalResgate)
+        //        throw new Exception("Saldo menor que o valor do resgate!");
             
-        }
+        //}
 
         public async Task DeletarAsync(int? id)
         {
