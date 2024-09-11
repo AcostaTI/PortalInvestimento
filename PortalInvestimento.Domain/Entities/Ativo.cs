@@ -20,17 +20,17 @@ namespace PortalInvestimento.Domain.Entities
             
         }
 
-        //public void Update(enTipoInvestimento tipo, string nome, string descricao, string codigo, decimal taxaADM, decimal aporteMinimo, decimal rentabilidadeUltimo_3meses, decimal rentabilidade_Ultimo_12meses, decimal rentabilidade_Ultimo_24meses)
-        //{
-        //    Tipo = tipo;
-        //    Nome = nome;
-        //    Descricao = descricao;
-        //    Codigo = codigo;
-        //    TaxaADM = taxaADM;
+        public Ativo(enTipoInvestimento tipo, string nome, string descricao, string codigo, decimal taxaADM)
+        {
+            Tipo = tipo;
+            Nome = nome;
+            Descricao = descricao;
+            Codigo = codigo;
+            TaxaADM = taxaADM;
 
-        //    // ValidateEntity();
+            ValidateEntity();
 
-        //}
+        }
 
         public override void ValidateEntity()
         {
