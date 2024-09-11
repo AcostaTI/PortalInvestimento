@@ -13,7 +13,7 @@ namespace PortalInvestimento.Domain.Entities
             Quantidade = quantidade;
             Preco = preco;
             Total = quantidade * preco;
-            DataTransacao = dataTransacao;
+            DataTransacao = DateTime.Now;
             PortfolioId = portfolioId;
             AtivoId = ativoId;
 
@@ -47,7 +47,7 @@ namespace PortalInvestimento.Domain.Entities
         public override void ValidateEntity()
         {
             AssertionConcern.AssertArgumentRange((double)Preco, 0.1, 1000000, "Deve ser entre 0.1 e 1000000");
-            AssertionConcern.AssertArgumentLength(Operacao, 1, "Não deve ser maior que 1 caractere");
+            AssertionConcern.AssertArgumentLength(Operacao, 1, "Não deve ser maior que 1 caractere.");
         }
     }
 }

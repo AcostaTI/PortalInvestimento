@@ -46,7 +46,7 @@ namespace PortalInvestimento.API.Controllers
             if (usuario == null)
                 return NotFound(new { mensagem = "Usuario e ou Senha invalidos" });
 
-            return Ok(new { mensagem = "Login success" });
+            return Ok(new { mensagem = "Login success" , usuario });
         }
 
         [HttpGet("GetAllUsers")]

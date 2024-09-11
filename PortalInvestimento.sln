@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortalInvestimento.Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortalInvestimento.API", "PortalInvestimento.API\PortalInvestimento.API.csproj", "{7A1058C1-FEAB-481C-B154-A5C36724A44B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalInvestimento.Domain.Tests", "PortalInvestimento.Domain.Tests\PortalInvestimento.Domain.Tests.csproj", "{4E02DD68-0C14-4D91-BD8D-4C619903BF40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7A1058C1-FEAB-481C-B154-A5C36724A44B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A1058C1-FEAB-481C-B154-A5C36724A44B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A1058C1-FEAB-481C-B154-A5C36724A44B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E02DD68-0C14-4D91-BD8D-4C619903BF40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E02DD68-0C14-4D91-BD8D-4C619903BF40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E02DD68-0C14-4D91-BD8D-4C619903BF40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E02DD68-0C14-4D91-BD8D-4C619903BF40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
