@@ -8,8 +8,8 @@ namespace PortalInvestimento.API.Tests
 {
     public class TransacaoControllerTest
     {
-        TransacaoController _controller;
-        ITransacaoService _service;
+        private readonly TransacaoController _controller;
+        private readonly ITransacaoService _service;
 
         public TransacaoControllerTest()
         {
