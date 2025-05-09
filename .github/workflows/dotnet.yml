@@ -68,6 +68,8 @@ jobs:
       - name: Gerar relatório de cobertura de testes com ReportGenerator
         if: success()
         run: |
+          # Acessar diretório gerado com o XML de Cobertura de código
+          cd $(ls -d |head -n 1)
           cd ${{ env.CAMINHO_PROJETO_TESTES }}/TestResults
           reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:coveragereport" -reporttypes:Html
       - name: Upload como Artifact dos Reports de Resultado de Testes Executados com Sucesso + Cobertura de Código
