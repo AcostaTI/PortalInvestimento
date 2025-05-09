@@ -58,7 +58,7 @@ jobs:
         run: dotnet build --no-restore
   
       - name: Test
-        run: dotnet test ./PortalInvestimento.API.Test --verbosity minimal --logger:"html;LogFileName=resultado-testes.html" --collect:"XPlat Code Coverage"
+        run: dotnet test ./PortalInvestimento.API.Tests --verbosity minimal --logger:"html;LogFileName=resultado-testes.html" --collect:"XPlat Code Coverage"
         
       
         
