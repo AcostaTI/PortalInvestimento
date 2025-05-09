@@ -83,7 +83,7 @@ jobs:
           retention-days: 30
   
       - name: Upload como Artifact do Report de Testes com Falhas
-        uses: actions/upload-artifact@v2.2.2
+        uses: actions/upload-artifact@v4
         if: failure()
         env:
           CAMINHO_RELATORIO_ERROS: ${{ env.CAMINHO_PROJETO_TESTES }}/TestResults/resultado-testes.html
