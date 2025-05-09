@@ -20,6 +20,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          args:
+              # Unique key of your project. You can find it in SonarQube > [my project] > Project Information (top-right menu)
+              # mandatory
+              -Dsonar.projectKey=AcostaTI_PortalInvestimento
           fetch-depth: 0  
       - name: SonarQubeScan
         uses: SonarSource/sonarqube-scan-action@v4
