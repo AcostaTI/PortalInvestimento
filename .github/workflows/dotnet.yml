@@ -5,8 +5,6 @@ on:
       - master
   pull_request:
     types: [opened, synchronize, reopened]
-env:
-  CAMINHO_PROJETO_TESTES: ./PortalInvestimento.API.Tests
 jobs:
   build:
     name: Build and analyze
@@ -30,6 +28,7 @@ jobs:
         id: cache-sonar-scanner
         uses: actions/cache@v4
         with:
+          dotnet-version: 8.0.x
           path: .\.sonar\scanner
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
@@ -46,23 +45,12 @@ jobs:
         run: |
           dotnet tool install --global dotnet-coverage
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"acostati_investimento" /o:"acostati" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
-          dotnet build
+          dotnet restore
+          dotnet build --no-restore
           dotnet-coverage collect 'dotnet test' -f xml -o 'coverage.xml'
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-    
-      - name: Restore dependencies
-        run: dotnet restore
-    
-      - name: Build
-        run: dotnet build --no-restore
-  
-      - name: Test
-        run: dotnet test ${{ env.CAMINHO_PROJETO_TESTES }} --verbosity minimal --logger:"html;LogFileName=resultado-testes.html" --collect:"XPlat Code Coverage"
+
       
 
       
