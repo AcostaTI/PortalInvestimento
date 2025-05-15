@@ -15,6 +15,8 @@ namespace PortalInvestimento.Domain.Entities
             Codigo = codigo;
             UsuarioId = usuarioId;
             Usuario = usuario;
+
+            ValidateEntity();
         }
 
         public string Nome { get; }
