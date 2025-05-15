@@ -6,31 +6,20 @@ namespace PortalInvestimento.Domain.Entities
     {
         public Portfolio()
         {
-            
+            Transacoes = new List<Transacao>();
         }
-        //public Portfolio(string nome, string descricao, string codigo) 
-        //{
+        public Portfolio(string nome, string descricao, string codigo, int? usuarioId, Usuario usuario)
+        {
+            Nome = nome;
+            Descricao = descricao;
+            Codigo = codigo;
+            UsuarioId = usuarioId;
+            Usuario = usuario;
+        }
 
-        //    Nome = nome;
-        //    Descricao = descricao;
-        //    Codigo = codigo;
-
-        //    //ValidateEntity();
-        //}
-
-        //public Portfolio(int id, string nome, string descricao, string codigo)
-        //{
-        //    Id = id;
-        //    Nome = nome;
-        //    Descricao = descricao;
-        //    Codigo = codigo;
-
-        //    //ValidateEntity();
-        //}
-
-        public string Nome { get; private set; }
-        public string Descricao { get; private set; }
-        public string Codigo { get; private set; }
+        public string Nome { get; }
+        public string Descricao { get; }
+        public string Codigo { get; }
         public int? UsuarioId { get; set; }
         public Usuario Usuario { get;  set; }
         public ICollection<Transacao> Transacoes { get; set; }
